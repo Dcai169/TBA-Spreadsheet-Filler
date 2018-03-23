@@ -3,19 +3,22 @@ print("program start")
 import requests
 import gspread
 import json
-import time as t
+import pprint
 from oauth2client.service_account import ServiceAccountCredentials
+#variable declaration
+TBA='https://www.thebluealliance.com/api/v3/'
+focusTeam='frc5735'
+focusDistrict='2018ne'
+eventKey='2018marea'
+TBAauthKey="uSAyrK7Xsxf7mSCSY6ivVy4KHM8CpyVISV9EM96d8ZS9ZLCY4oFsyAWPcSaByD2U"
+pp=pprint.PrettyPrinter()
 #google autherization
 scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
 credentials = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
 gc = gspread.authorize(credentials)
 sh=gc.open('Reading Scouting Data Test').get_worksheet(1)
-headers={'X-TBA-Auth-Key' : 'uSAyrK7Xsxf7mSCSY6ivVy4KHM8CpyVISV9EM96d8ZS9ZLCY4oFsyAWPcSaByD2U'}
+headers={'X-TBA-Auth-Key' : TBAauthKey}
 print("init complete")
-#variable declaration
-TBA='https://www.thebluealliance.com/api/v3/'
-yourTeam=5735
-eventKey='2018marea'
 
 #program logic starts here
 
@@ -23,7 +26,7 @@ eventKey='2018marea'
 def TBAreader(path):
   output=json.loads(requests.get(TBA+path, params=headers).text)
   return output
-
+"""
 #gets team numbers and nicknames from TBAreader  
 def TBAeventParticipantsReader(event):
   eventTeams=TBAreader("event/"+str(event)+"/teams/keys")
@@ -38,3 +41,10 @@ print('writing')
 for j in range(0, len(participantNumbers)):
   sh.update_cell(j+2, 1, participantNumbers[j])
   sh.update_cell(j+2, 2, participantNames[j])
+"""
+rankings=TBAreader("district/"+focusDistrict+"/rankings")
+
+pp.pprint(rankings[20]['team_key'])
+
+#for k in range(0,len(rankings):
+#  if rankings[i][
