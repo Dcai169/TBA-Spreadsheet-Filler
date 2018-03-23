@@ -1,2 +1,2 @@
 # TBA-Spreadsheet-Filler
-Fills spreadsheet with data
+Uses TBA API v3 to fill spreadsheet for scouting at FRC events.
