@@ -37,50 +37,8 @@ class TBA:
     for i in range(0,len(eventTeams)):
       participants[str(eventTeams[i][3:])]=(self.reader("team/"+eventTeams[i]))['nickname']
     return participants
-tba=TBA()
   
-#searches a dictionary for a key Or Value; returns the index
-#fix this its broken
-class searchDistrictRankings:
-  def __init__(self, district):
-    self.data = []
-    self.rankings=tba.reader("district/"+district+"/rankings")
-    
-  def rankingsKeys(self, query):
-    for i in range(0,len(self.rankings)):
-      if self.rankings[i]==query:
-        return i
-        
-  def indexByKey(self, query, key):
-    for i in range(0,len(self.rankings)):
-      if self.rankings[i]==key:
-        for j in range(0,len(self.rankings[i])):
-          if self.rankings[i][j]==query:
-            return i
-s=searchDistrictRankings("2018ne")
-
-class advancementPrediction:
-  def __init__(self):
-    self.data = []
-  #uses the keenan advancement prediction algorithm
-  def advancementPredictor(self, estimation, district, team):
-    rankings=tba.reader("district/"+district+"/rankings")
-    for k in range(0,len(rankings)):
-      passingTeams={}
-      if rankings[k]['team_key']==team:
-        print("baseline team found")
-        focusTeamRank=rankings[k]['rank']
-        focusTeamRP=rankings[k]['point_total']
-        passingThreshold=k+estimation
-        for l in range(k, passingThreshold):
-          if focusTeamRP>rankings[l]['point_total']:
-            passingTeams[rankings[l]['team_key']]=(rankings[l]['point_total'])
-            return(len(passingTeams)+focusTeamRank+1)
-          
-  def keenanFunction(self, futile):
-    futile=False
-    return futile
-a=advancementPrediction()
+tba=TBA()
 
 #writes data to spreadsheet
 def sheetDataWriter(event):
