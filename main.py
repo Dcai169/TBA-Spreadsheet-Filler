@@ -3,7 +3,7 @@ print("program start")
 import gspread
 import pprint
 from oauth2client.service_account import ServiceAccountCredentials
-import headerkey
+import apiaccessor
 # variable declaration
 focusTeam = 'frc5735'
 focusDistrict = '2018ne'
@@ -22,13 +22,22 @@ sh = gc.open('Scouting Data Test Sheet').get_worksheet(1)
 print("init complete")
 
 # program logic starts here
-tba = headerkey.HeaderKey(URL, KEY_NAME, KEY)
+tba = apiaccessor.XAPIKey(URL, KEY_NAME, KEY)
+
+
+# gets team numbers and nicknames from TBAreader
+def get_event_participants(self, event):
+    event_teams = self.reader("event/"+str(event)+"/teams/keys")
+    participants = {}
+    for i in range(0, len(event_teams)):
+        participants[str(event_teams[i][3:])] = self.reader("team/"+event_teams[i])['nickname']
+    return participants
 
 
 # writes data to spreadsheet
 def sheet_data_writer(event):
-    participant_numbers = list(tba.get_event_participants(event).keys())
-    participant_names = list(tba.get_event_participants(event).values())
+    participant_numbers = list(get_event_participants(event).keys())
+    participant_names = list(get_event_participants(event).values())
     print('writing')
     for j in range(0, len(participant_numbers)):
         sh.update_cell(j+2, 1, participant_numbers[j])
