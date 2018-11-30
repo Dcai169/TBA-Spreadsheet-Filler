@@ -1,5 +1,3 @@
-print("program start")
-# program init
 import gspread
 import pprint
 from oauth2client.service_account import ServiceAccountCredentials
