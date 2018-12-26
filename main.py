@@ -2,13 +2,14 @@ import gspread
 import pprint
 from oauth2client.service_account import ServiceAccountCredentials
 import apiaccessor
+import credentials
 # variable declaration
 focusTeam = 'frc5735'
 focusDistrict = '2018ne'
 eventKey = '2018marea'
 pp = pprint.PrettyPrinter()
 KEY_NAME = 'X-TBA-Auth-Key'
-KEY = "uSAyrK7Xsxf7mSCSY6ivVy4KHM8CpyVISV9EM96d8ZS9ZLCY4oFsyAWPcSaByD2U"
+KEY = credentials.key
 URL = 'https://www.thebluealliance.com/api/v3/'
 
 # google authorization
