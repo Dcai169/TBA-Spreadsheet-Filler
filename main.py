@@ -50,6 +50,8 @@ def plabel_writer(event):
         print(str(round(calc_percent(j, len(participant_numbers))))+'% complete', end='\r')
         sleep(delay)
     print()
+    print('done')
+    return True
 
 
 def slabel_writer(event):
@@ -68,6 +70,8 @@ def slabel_writer(event):
         print(str(round(calc_percent(j, len(all_participants))))+'% complete', end='\r')
         sleep(delay)
     print()
+    print('done')
+    return True
 
 
 def calc_percent(part, whole):
@@ -76,4 +80,4 @@ def calc_percent(part, whole):
 
 # plabel_writer(event_key)
 # slabel_writer(event_key)
-print('done')
+
