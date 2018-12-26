@@ -5,8 +5,9 @@ import apiaccessor
 import credentials
 # variable declaration
 focusTeam = 'frc5735'
-focusDistrict = '2018ne'
-eventKey = '2018marea'
+focusDistrict = '2019ne'
+eventKey = '2019marea'
+# eventKey = '2019mabos'
 pp = pprint.PrettyPrinter()
 KEY_NAME = 'X-TBA-Auth-Key'
 KEY = credentials.key
@@ -42,4 +43,6 @@ def sheet_data_writer(event):
         sh.update_cell(j+2, 1, participant_numbers[j])
         sh.update_cell(j+2, 2, participant_names[j])
     return True
+
+
 
