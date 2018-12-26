@@ -80,4 +80,3 @@ def calc_percent(part, whole):
 
 # plabel_writer(event_key)
 # slabel_writer(event_key)
-
