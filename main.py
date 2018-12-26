@@ -6,8 +6,8 @@ import credentials
 # variable declaration
 focusTeam = 'frc5735'
 focusDistrict = '2019ne'
-eventKey = '2019marea'
-# eventKey = '2019mabos'
+# eventKey = '2019marea'
+eventKey = '2019mabos'
 pp = pprint.PrettyPrinter()
 KEY_NAME = 'X-TBA-Auth-Key'
 KEY = credentials.key
@@ -17,7 +17,7 @@ URL = 'https://www.thebluealliance.com/api/v3/'
 scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
 credentials = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
 gc = gspread.authorize(credentials)
-sh = gc.open('Scouting Data Test Sheet').get_worksheet(1)
+sh = gc.open('2019 Greater Boston Scouting Data').get_worksheet(1)
 
 print("init complete")
 
@@ -26,11 +26,11 @@ tba = apiaccessor.XAPIKey(URL, KEY_NAME, KEY)
 
 
 # gets team numbers and nicknames from TBAreader
-def get_event_participants(self, event):
-    event_teams = self.reader("event/"+str(event)+"/teams/keys")
+def get_event_participants(event):
+    event_teams = tba.reader("event/"+str(event)+"/teams/keys")
     participants = {}
     for i in range(0, len(event_teams)):
-        participants[str(event_teams[i][3:])] = self.reader("team/"+event_teams[i])['nickname']
+        participants[str(event_teams[i][3:])] = tba.reader("team/"+event_teams[i])['nickname']
     return participants
 
 
