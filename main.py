@@ -45,8 +45,8 @@ def plabel_writer(event):
     participant_names = list(get_event_participants(event).values())
     print('writing')
     for j in range(len(participant_numbers)):
-        pws.update_cell(j + 2, 1, participant_numbers[j])
-        pws.update_cell(j + 2, 2, participant_names[j])
+        pws.update_cell(j + 3, 1, participant_numbers[j])
+        pws.update_cell(j + 3, 2, participant_names[j])
         print(str(round(calc_percent(j, len(participant_numbers))))+'% complete', end='\r')
         sleep(delay)
     print()
@@ -66,7 +66,7 @@ def slabel_writer(event):
             all_participants.append(team)
     print('writing')
     for j in range(len(all_participants)):
-        sws.update_cell(j + 2, 2, all_participants[j][3:])
+        sws.update_cell(j + 3, 2, all_participants[j][3:])
         print(str(round(calc_percent(j, len(all_participants))))+'% complete', end='\r')
         sleep(delay)
     print()
