@@ -107,3 +107,4 @@ venv.bak/
 
 client_secret.json
 credentials.py
+.DS_Store
